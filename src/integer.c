@@ -8,23 +8,38 @@ typedef struct integer{
     int value;
 } Integer;
 
-void init_Integer(Object* Int, va_list args){
+Type IntegerType;
+
+void create_Integer(Object* Int, va_list args){
     Integer* self = (Integer*)Int;
     self->value = va_arg(args, int);
 }
-
-Type IntegerType = {
-    .name = "Integer",
-    .size = sizeof(Integer),
-    .init = init_Integer,
-    .destroy = NULL
-};
 
 Object* add_Integers(Object* Int1, Object* Int2){
     return create(&IntegerType, ((Integer*)Int1)->value + ((Integer*)Int2)->value);
 };
 
+int length_Integer(Object* Int){
+    if(Int != NULL){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 void print_Integer(Object* obj){
-    printf("%d",((Integer*)obj)->value);
+    printf("Object: %s\nValue:%d\n",obj->type->name, ((Integer*)obj)->value);
     return;
 }
+
+Type IntegerType = {
+    .name = "Integer",
+    .size = sizeof(Integer),
+    .create = create_Integer,
+    .destroy = NULL,
+    .add = add_Integers,
+    .print = print_Integer,
+    .length = length_Integer
+};
+
+

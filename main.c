@@ -1,11 +1,11 @@
-#include "include/integer.h"
-#include<stdio.h>
+#include <stdio.h>
+#include "include/string.h"
 
-use_IntegerType;
+use_StringType;
 
 int main(){
-    Object* num1 = create(&IntegerType, 5);
-    Object* num2 = create(&IntegerType, 23);
-    Object* res = add_Integers(num1, num2);
-    print_Integer(res);
+    Object* obj = create(&StringType, "adarsh s kamatagi");
+    print(obj);
+    printf("\n%d\n", length(obj));
+    destroy(1, obj);
 }

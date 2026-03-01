@@ -6,7 +6,9 @@
 
 typedef struct integer Integer;
 
-Object* add_Integers(Object* obj1, Object* obj2);
-void print_Integer(Object* obj);
+/*
+    Basically all the operations which can be done on a typical object can be done on Integers.
+    create(), print(), add(), destroy() etc
+*/
 
 #endif

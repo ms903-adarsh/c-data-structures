@@ -1,9 +1,9 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude
+CFLAGS = -Iinclude
 
 TARGET = my_program
 
-SRCS = main.c src/object.c src/integer.c
+SRCS = main.c src/*.c
 OBJS = $(SRCS:.c=.o)
 
 $(TARGET): $(OBJS)
@@ -14,3 +14,5 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
+
+//gcc -Iinclude main.c src/*.c -o my_program

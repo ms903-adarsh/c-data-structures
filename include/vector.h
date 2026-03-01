@@ -28,6 +28,11 @@ Object* pop(Object* vector){
 
 }
 
+void print(Object* obj){
+
+}
+
+Obje
 Type VectorType = {
     .name = "Vector",
     .size = 
