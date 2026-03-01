@@ -1,27 +1,27 @@
 #include "integer.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
 typedef struct integer{
     Object base;
     int value;
 } Integer;
 
+void init_Integer(Object* Int, va_list args){
+    Integer* self = (Integer*)Int;
+    self->value = va_arg(args, int);
+}
+
 Type IntegerType = {
     .name = "Integer",
-    .size = sizeof(Integer)
+    .size = sizeof(Integer),
+    .init = init_Integer,
+    .destroy = NULL
 };
 
-Object* create_Integer(int num){
-    Object* obj = malloc(IntegerType.size);
-    obj->type = &IntegerType;
-    obj->ref_count = 1;
-    ((Integer*)obj)->value = num;
-    return obj;
-};
-
-Object* add_Integers(Object* obj1, Object* obj2){
-    return create_Integer(((Integer*)obj1)->value + ((Integer*)obj2)->value);
+Object* add_Integers(Object* Int1, Object* Int2){
+    return create(&IntegerType, ((Integer*)Int1)->value + ((Integer*)Int2)->value);
 };
 
 void print_Integer(Object* obj){
